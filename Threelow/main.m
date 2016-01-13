@@ -9,23 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "Dice.h"
 #import "InputCollector.h"
+#import "GameController.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
 
         InputCollector *inputCollector = [[InputCollector alloc] init];
-        
-        Dice *aDice1 = [[Dice alloc] init];
-        Dice *aDice2 = [[Dice alloc] init];
-        Dice *aDice3 = [[Dice alloc] init];
-        Dice *aDice4 = [[Dice alloc] init];
-        Dice *aDice5 = [[Dice alloc] init];
-        
-        NSLog(@"value of Dice1 = %i", aDice1.value);
-        NSLog(@"value of Dice2 = %i", aDice2.value);
-        NSLog(@"value of Dice3 = %i", aDice3.value);
-        NSLog(@"value of Dice4 = %i", aDice4.value);
-        NSLog(@"value of Dice5 = %i", aDice5.value);
+        GameController *gameController = [[GameController alloc] init];
         
         BOOL needPlay = YES;
         
@@ -35,8 +25,11 @@ int main(int argc, const char * argv[]) {
             
             if([userInput isEqualToString:@"roll\n"]) {
                 
-                [aDice1 roll];
-                NSLog(@"value of aDice1 = %i", aDice1.value);
+                for (Dice *dice in gameController.dices) {
+                    [dice roll];
+                    NSLog(@"value of dice = %d", dice.value);
+                }
+                
             }
         
         }
