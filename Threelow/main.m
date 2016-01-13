@@ -8,10 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "Dice.h"
+#import "InputCollector.h"
 
 int main(int argc, const char * argv[]) {
     @autoreleasepool {
 
+        InputCollector *inputCollector = [[InputCollector alloc] init];
+        
         Dice *aDice1 = [[Dice alloc] init];
         Dice *aDice2 = [[Dice alloc] init];
         Dice *aDice3 = [[Dice alloc] init];
@@ -24,6 +27,20 @@ int main(int argc, const char * argv[]) {
         NSLog(@"value of Dice4 = %i", aDice4.value);
         NSLog(@"value of Dice5 = %i", aDice5.value);
         
+        BOOL needPlay = YES;
+        
+        while (needPlay) {
+            
+            NSString *userInput =[inputCollector inputForPrompt:@"Input << roll >> to play: "];
+            
+            if([userInput isEqualToString:@"roll\n"]) {
+                
+                [aDice1 roll];
+                NSLog(@"value of aDice1 = %i", aDice1.value);
+            }
+        
+        }
+        
+        return 0;
     }
-    return 0;
 }

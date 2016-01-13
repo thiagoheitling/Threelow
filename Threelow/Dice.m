@@ -13,9 +13,17 @@
 - (id)init {
     self = [super init];
     if (self) {
-        _value = arc4random() %6 + 1;
+        
+        [self roll];
+        
     }
     return self;
 }
+
+- (void) roll{
+    _value = arc4random() %6 + 1;
+}
+
+
 @end
 
