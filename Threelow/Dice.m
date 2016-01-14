@@ -14,14 +14,14 @@
     self = [super init];
     if (self) {
         
-        [self roll];
+        [self randomize];
         
     }
     return self;
 }
 
-- (void) roll{
-    _value = arc4random() %6 + 1;
+- (void) randomize {
+    _value = arc4random_uniform(6) + 1;
 }
 
 

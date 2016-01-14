@@ -11,22 +11,80 @@
 
 @implementation GameController
 
-- (id)init
-{
+-(instancetype)initWithDiceNumber:(int)diceNumber {
+    
     self = [super init];
-    if (self) {
+    if(self) {
         
-        Dice *dice1 = [Dice new];
-        Dice *dice2 = [Dice new];
-        Dice *dice3 = [Dice new];
-        Dice *dice4 = [Dice new];
-        Dice *dice5 = [Dice new];
+        _dices = [NSMutableArray array];
+        _heldDiceSet = [NSMutableSet set];
         
-        _dices = @[dice1, dice2, dice3, dice4, dice5];
+        for (int i = 0; i < diceNumber; i++) {
+            
+            Dice *aDice = [[Dice alloc] init];
+            
+            [_dices addObject:aDice];
+        }
         
-        _heldDices = [NSMutableSet set];
     }
     return self;
 }
+
+- (void)rollDice {
+    
+    for (int i = 0; i < [self.dices count]; i++) {
+        
+        Dice *aDice = self.dices[i];
+        
+        if ([self.heldDiceSet containsObject:aDice]) {
+            
+            NSLog(@"[dice%d] = %d", i, aDice.value);
+        
+        }
+        else {
+            
+            [aDice randomize];
+            NSLog(@"Dice%d = %d", i, aDice.value);
+        }
+    }
+}
+
+-(void) holdDiceAtIndex:(int)indexOfDice {
+    
+    Dice *aDice = [self.dices objectAtIndex:indexOfDice];
+    
+    BOOL isHeld = [self.heldDiceSet containsObject:aDice];
+    
+    if (!isHeld) {
+    
+        [self.heldDiceSet addObject:aDice];
+    
+    }
+    
+    else {
+        
+        [self.heldDiceSet removeObject:aDice];
+        
+    }
+}
+
+-(void) resetAllHeldDices {
+    
+    [self.heldDiceSet removeAllObjects];
+    
+}
+
+-(int) currentScore {
+    
+    int score = 0 ;
+    
+    for (Dice *aDice in self.heldDiceSet) {
+        
+        score += aDice.value;
+    }
+    
+    return  score;
+}
+
 
 @end

@@ -15,24 +15,44 @@ int main(int argc, const char * argv[]) {
     @autoreleasepool {
 
         InputCollector *inputCollector = [[InputCollector alloc] init];
-        GameController *gameController = [[GameController alloc] init];
+        GameController *gameController = [[GameController alloc] initWithDiceNumber:5];
         
-        BOOL needPlay = YES;
+        BOOL userPlaying = YES;
         
-        while (needPlay) {
+        while (userPlaying) {
             
-            NSString *userInput =[inputCollector inputForPrompt:@"Input << roll >> to play: "];
+            NSString *input = [inputCollector inputForPrompt:@"roll, hold, reset or quit"];
             
-            if([userInput isEqualToString:@"roll\n"]) {
+            if ([input isEqualToString:@"roll\n"]) {
                 
-                for (Dice *dice in gameController.dices) {
-                    [dice roll];
-                    NSLog(@"value of dice = %d", dice.value);
-                }
+                [gameController rollDice];
                 
             }
-        
+            
+            else if ([input isEqualToString:@"quit\n"]) {
+                
+                userPlaying = NO;
+                
+            }
+            
+            else if ([input isEqualToString:@"hold\n"]) {
+                
+                NSString *inputHeldDice = [inputCollector inputForPrompt:@"Which dice index do you want to hold? "];
+                int index = [inputHeldDice intValue];
+                
+                [gameController holdDiceAtIndex:index];
+                
+            }
+            
+            else if ([input isEqualToString:@"reset\n"]) {
+                
+                [gameController resetAllHeldDices];
+                
+            }
+            
         }
+        
+        
         
         return 0;
     }

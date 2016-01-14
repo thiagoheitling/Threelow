@@ -12,6 +12,6 @@
 
 @property (nonatomic, assign) int value;
 
-- (void) roll;
+- (void) randomize;
 
 @end

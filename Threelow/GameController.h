@@ -10,8 +10,19 @@
 
 @interface GameController : NSObject
 
-@property (nonatomic, strong) NSArray *dices;
 
-@property (nonatomic, strong) NSMutableSet *heldDices;
+
+@property (nonatomic, strong) NSMutableArray *dices;
+@property (nonatomic, strong) NSMutableSet *heldDiceSet;
+
+-(instancetype)initWithDiceNumber:(int)diceNumber;
+
+-(void) rollDice;
+
+-(void) holdDiceAtIndex:(int)indexOfDice;
+
+-(void) resetAllHeldDices;
+
+-(int) currentScore;
 
 @end
