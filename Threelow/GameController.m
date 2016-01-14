@@ -80,10 +80,19 @@
     
     for (Dice *aDice in self.heldDiceSet) {
         
-        score += aDice.value;
+        if (aDice.value != 3) {
+            
+            score += aDice.value;
+        }
     }
     
     return  score;
+}
+
+-(void) status {
+    
+    
+    
 }
 
 

@@ -49,6 +49,8 @@ int main(int argc, const char * argv[]) {
                 [gameController resetAllHeldDices];
                 
             }
+
+            NSLog(@"Current score = %i", [gameController currentScore]);
             
         }
         

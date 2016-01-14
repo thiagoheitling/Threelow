@@ -25,4 +25,6 @@
 
 -(int) currentScore;
 
+-(void) status;
+
 @end
