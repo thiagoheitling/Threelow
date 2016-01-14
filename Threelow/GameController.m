@@ -91,7 +91,22 @@
 
 -(void) status {
     
+    NSLog(@"Current score = %i", [self currentScore]);
     
+    for (int i = 0; i < [self.dices count]; i++) {
+        
+        Dice *aDice = self.dices[i];
+        
+        if ([self.heldDiceSet containsObject:aDice]) {
+            
+            NSLog(@"[dice%d] = %d", i, aDice.value);
+            
+        }
+        else {
+
+            NSLog(@"Dice%d = %d", i, aDice.value);
+        }
+    }
     
 }
 

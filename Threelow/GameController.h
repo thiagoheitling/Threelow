@@ -23,8 +23,6 @@
 
 -(void) resetAllHeldDices;
 
--(int) currentScore;
-
 -(void) status;
 
 @end

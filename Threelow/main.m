@@ -21,7 +21,7 @@ int main(int argc, const char * argv[]) {
         
         while (userPlaying) {
             
-            NSString *input = [inputCollector inputForPrompt:@"roll, hold, reset or quit"];
+            NSString *input = [inputCollector inputForPrompt:@"roll, hold, reset, status, or quit:"];
             
             if ([input isEqualToString:@"roll\n"]) {
                 
@@ -50,8 +50,11 @@ int main(int argc, const char * argv[]) {
                 
             }
 
-            NSLog(@"Current score = %i", [gameController currentScore]);
+            else if ([input isEqualToString:@"status\n"]) {
             
+                [gameController status];
+            
+            }
         }
         
         
